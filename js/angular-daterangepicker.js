@@ -11,7 +11,7 @@
     }
   });
 
-  picker.directive('dateRangePicker', ['$compile', '$timeout', '$parse', 'dateRangePickerConfig', function($compile, $timeout, $parse, dateRangePickerConfig) {
+  picker.directive('dateRangePicker', ['$compile', '$timeout', '$parse', 'moment', 'dateRangePickerConfig', function($compile, $timeout, $parse, moment, dateRangePickerConfig) {
     return {
       require: 'ngModel',
       restrict: 'A',
@@ -90,7 +90,7 @@
           };
           if (opts.singleDatePicker && objValue) {
             return f(objValue);
-          } else if (objValue.startDate) {
+          } else if (objValue && objValue.startDate) {
             return [f(objValue.startDate), f(objValue.endDate)].join(opts.locale.separator);
           } else {
             return '';
